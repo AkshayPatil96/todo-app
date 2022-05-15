@@ -1,0 +1,48 @@
+.scroll {
+    /* border: 1px solid; */
+    height: 150px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+.scroll::-webkit-scrollbar-track {
+    /* background: #f1f1f194; */
+    border-radius: 25px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background: #88888850;
+    border-radius: 25px;
+}
+
+.scroll::-webkit-scrollbar-thumb:hover {
+    background: #888888;
+    border-radius: 25px;
+}
+
+.userLogo {
+    /* border: 1px solid; */
+    width: 100px;
+    margin: 5% 30%;
+}
+
+.loginImg {
+    width: 500px;
+    
+}
+
+.swap {
+    /* border: 1px solid; */
+    /* width: 100%; */
+    margin-left: 10%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+
+    
+}

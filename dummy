@@ -1,0 +1,328 @@
+<Form onSubmit={handleSubmit}>
+                    <h1 className="text-center mb-4">Add Todo Tasks</h1>
+                    <Row className="mb-5">
+                        <Col xs={4}>
+                            <FloatingLabel
+                                controlId="floatingInput"
+                                label="TITLE"
+                            >
+                                {/* Title */}
+
+                                <Form.Control
+                                    type="text"
+                                    name="title"
+                                    value={title}
+                                    onChange={handleChange}
+                                    autoComplete="off"
+                                    placeholder="Todo Title"
+                                />
+                            </FloatingLabel>
+                        </Col>
+                        <Col xs={5} className="">
+                            <InputGroup className="p-2">
+                                {/* Sub Tasks */}
+
+                                <FormControl
+                                    placeholder="Sub Tasks"
+                                    type="text"
+                                    // name="subTasks"
+                                    value={subTk}
+                                    onChange={handlesubTask}
+                                    autoComplete="off"
+                                    aria-label="Add Sub Tasks"
+                                    aria-describedby="basic-addon2"
+                                />
+                                <Button
+                                    variant="outline-secondary"
+                                    id="button-addon2"
+                                    onClick={addSubTask}
+                                >
+                                    ADD
+                                </Button>
+                            </InputGroup>
+                        </Col>
+                        <Col xs={3}>
+                            <FloatingLabel
+                                controlId="floatingInput"
+                                label="Date"
+                            >
+                                {/* Date */}
+
+                                <Form.Control
+                                    type="date"
+                                    name="date"
+                                    value={date}
+                                    onChange={handleChange}
+                                    autoComplete="off"
+                                    placeholder="Todo Title"
+                                />
+                            </FloatingLabel>
+                        </Col>
+                    </Row>
+                    <Row className="mb-5">
+                        <Col xs={4}>
+                            <FloatingLabel
+                                controlId="floatingTextarea2"
+                                label="DESCRIPTION"
+                            >
+                                {/* Description */}
+
+                                <Form.Control
+                                    as="textarea"
+                                    placeholder="DESCRIPTION"
+                                    name="description"
+                                    value={description}
+                                    onChange={handleChange}
+                                    style={{ height: "150px" }}
+                                />
+                            </FloatingLabel>
+                        </Col>
+                        <Col xs={5} className={styles.scroll}>
+                            {/* sub tasks */}
+                            {getSub &&
+                                getSub.map((element) => {
+                                    return (
+                                        <InputGroup
+                                            className="mb-3"
+                                            key={element.id}
+                                        >
+                                            <InputGroup.Checkbox aria-label="Checkbox for following text input" />
+                                            <FormControl
+                                                aria-label="Text input with checkbox"
+                                                value={element.subTask}
+                                                onChange={(e) =>
+                                                    setSubTk(e.target.value)
+                                                }
+                                            />
+                                            {/* <p
+                                                style={{
+                                                    border: "1px solid red",
+                                                    width: "80%",
+                                                    // height: "20px",
+                                                    padding: "0.5rem 0.5rem",
+                                                    textAlign: "center",
+                                                }}
+                                            >
+                                                {element.subTask}
+                                            </p> */}
+                                            <Button
+                                                variant="outline-secondary"
+                                                id="button-addon2"
+                                                onClick={() =>
+                                                    handleDelete(element.id)
+                                                }
+                                            >
+                                                <FontAwesomeIcon
+                                                    icon={faTrashCan}
+                                                />
+                                            </Button>
+                                        </InputGroup>
+                                    );
+                                })}
+                        </Col>
+                        <Col xs={3}>
+                            {/* submit button */}
+
+                            <Button
+                                className="btn btn-secondary p-4 fs-5"
+                                type="submit"
+                            >
+                                Create New Task
+                            </Button>
+                        </Col>
+                    </Row>
+                    <Row className="mb-5">
+                        <Col xs={4}>
+                            {/* Statue */}
+
+                            <Form.Check
+                                type="radio"
+                                name="status"
+                                value="Todo"
+                                onChange={handleChange}
+                                id="default-radio-1"
+                                label="Todo"
+                            />
+                            <Form.Check
+                                type="radio"
+                                name="status"
+                                value="In Progress"
+                                onChange={handleChange}
+                                id="default-radio-2"
+                                label="In Progress"
+                            />
+                            <Form.Check
+                                type="radio"
+                                name="status"
+                                value="Done"
+                                onChange={handleChange}
+                                id="default-radio-3"
+                                label="Done"
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={4}>
+                            {/* type */}
+
+                            <Form.Check
+                                type="checkbox"
+                                name="type"
+                                // checked={false}
+                                value="Personal"
+                                onChange={typeChange}
+                                id="default-checkbox-1"
+                                label="Personal"
+                            />
+                            <Form.Check
+                                type="checkbox"
+                                name="type"
+                                // checked={false}
+                                value="Official"
+                                onChange={typeChange}
+                                id="default-checkbox-2"
+                                label="Official"
+                            />
+                            <Form.Check
+                                type="checkbox"
+                                name="type"
+                                // checked={false}
+                                value="Others"
+                                onChange={typeChange}
+                                id="default-checkbox-3"
+                                label="Others"
+                            />
+                        </Col>
+                    </Row>
+                </Form>
+
+
+
+
+
+
+
+
+
+
+
+
+===========> Sign up <=======================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                const init = {
+    id: nanoid(),
+    username: "",
+    email: "",
+    password: "",
+    tasks: [],
+};
+
+const Signup = () => {
+    const [signUp, setSignUp] = useState(init);
+
+    const { id, username, email, password } = signUp;
+
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.isAuth);
+    console.log("user: ", user);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setSignUp({
+            ...signUp,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(signupData(signUp, id));
+        console.log(signUp);
+    };
+
+    return (
+        <>
+            <form className={styles.sign_up_form} onSubmit={handleSubmit}>
+                <h2 className={styles.title}>Sign up</h2>
+                <div className={styles.input_field}>
+                    <i className="fas fa-user"></i>
+                    <input
+                        type="text"
+                        name="username"
+                        value={username}
+                        onChange={handleChange}
+                        placeholder="Username"
+                    />
+                </div>
+                <div className={styles.input_field}>
+                    <i className="fas fa-envelope"></i>
+                    <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={handleChange}
+                        placeholder="Email"
+                    />
+                </div>
+                <div className={styles.input_field}>
+                    <i className="fas fa-lock"></i>
+                    <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handleChange}
+                        placeholder="Password"
+                    />
+                </div>
+                <input type="submit" className={styles.btn} value="Sign up" />
+                <p className={styles.social_text}>
+                    Or Sign up with social platforms
+                </p>
+                <div className={styles.social_media}>
+                    <Link to="#" className={styles.social_icon}>
+                        <i className="fab fa-facebook-f"></i>
+                    </Link>
+                    <Link to="#" className={styles.social_icon}>
+                        <i className="fab fa-twitter"></i>
+                    </Link>
+                    <Link to="#" className={styles.social_icon}>
+                        <i className="fab fa-google"></i>
+                    </Link>
+                    <Link to="#" className={styles.social_icon}>
+                        <i className="fab fa-linkedin-in"></i>
+                    </Link>
+                </div>
+            </form>
+        </>
+    );
+};
+
+export default Signup;
